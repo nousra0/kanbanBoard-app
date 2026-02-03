@@ -2,6 +2,10 @@
 
 A creative Kanban board built with **Nuxt 3** and **Bootstrap 5**. Dark theme with glassmorphism-style columns, drag-and-drop cards, and local storage persistence.
 
+## Goal
+
+The main goal of this project is to **handle drag and drop actions**. The app lets you move tasks between columns (To Do → In Progress → Review → Done) by dragging cards and dropping them into the desired column. All drag-and-drop state is persisted so your board reflects the latest order and column of each task.
+
 ## Features
 
 - **4 columns**: To Do, In Progress, Review, Done
