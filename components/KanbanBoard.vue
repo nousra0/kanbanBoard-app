@@ -18,6 +18,12 @@
       @saved="onTaskSaved"
       @close="closeModals"
     />
+    <ConfirmDeleteModal
+      v-model="showDeleteModal"
+      :task="taskToDelete"
+      @close="closeDeleteModal"
+      @confirm="onConfirmDelete"
+    />
   </div>
 </template>
 
@@ -41,6 +47,13 @@ const {
   close: closeModals,
 } = useAddTaskModal()
 
+const {
+  showModal: showDeleteModal,
+  taskToDelete,
+  open: openDeleteModal,
+  close: closeDeleteModal,
+} = useConfirmDeleteModal()
+
 function onTaskSaved(payload: { title: string; description?: string; columnId: ColumnId; priority?: Task['priority']; id?: string }) {
   if (editingTask.value) {
     updateTask(editingTask.value.id, {
@@ -61,8 +74,13 @@ function onTaskSaved(payload: { title: string; description?: string; columnId: C
 }
 
 function handleDelete(task: Task) {
-  if (import.meta.client && window.confirm(`Delete "${task.title}"?`)) {
-    deleteTask(task.id)
+  openDeleteModal(task)
+}
+
+function onConfirmDelete() {
+  if (taskToDelete.value) {
+    deleteTask(taskToDelete.value.id)
+    closeDeleteModal()
   }
 }
 </script>
