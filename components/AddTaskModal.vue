@@ -14,7 +14,7 @@
               </h5>
               <button
                 type="button"
-                class="btn-close btn-close-white"
+                class="btn-close"
                 aria-label="Close"
                 @click="emit('close')"
               ></button>
@@ -26,7 +26,7 @@
                   <input
                     v-model="form.title"
                     type="text"
-                    class="form-control form-control-dark"
+                    class="form-control form-control-kanban"
                     placeholder="Task title"
                     required
                   />
@@ -35,7 +35,7 @@
                   <label class="form-label">Description (optional)</label>
                   <textarea
                     v-model="form.description"
-                    class="form-control form-control-dark"
+                    class="form-control form-control-kanban"
                     rows="3"
                     placeholder="Add details..."
                   ></textarea>
@@ -44,7 +44,7 @@
                   <label class="form-label">Column</label>
                   <select
                     v-model="form.columnId"
-                    class="form-select form-select-dark"
+                    class="form-select form-select-kanban"
                   >
                     <option
                       v-for="col in columns"
@@ -59,7 +59,7 @@
                   <label class="form-label">Priority</label>
                   <select
                     v-model="form.priority"
-                    class="form-select form-select-dark"
+                    class="form-select form-select-kanban"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -143,7 +143,7 @@ function submit() {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--kanban-modal-backdrop);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -163,28 +163,28 @@ function submit() {
   border: 1px solid var(--kanban-border-strong);
   border-radius: 20px;
   color: var(--kanban-text);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--kanban-modal-shadow);
 }
 
 .kanban-modal .modal-title {
   font-weight: 600;
 }
 
-.form-control-dark,
-.form-select-dark {
-  background: rgba(38, 35, 58, 0.9);
-  border: 1px solid var(--kanban-border-strong);
+.form-control-kanban,
+.form-select-kanban {
+  background: var(--kanban-input-bg);
+  border: 1px solid var(--kanban-input-border);
   color: var(--kanban-text);
   border-radius: 12px;
 }
 
-.form-control-dark::placeholder {
+.form-control-kanban::placeholder {
   color: var(--kanban-text-muted);
 }
 
-.form-control-dark:focus,
-.form-select-dark:focus {
-  background: rgba(50, 47, 72, 0.95);
+.form-control-kanban:focus,
+.form-select-kanban:focus {
+  background: var(--kanban-input-focus-bg);
   border-color: var(--kanban-accent);
   color: var(--kanban-text);
   box-shadow: 0 0 0 3px var(--kanban-accent-soft);

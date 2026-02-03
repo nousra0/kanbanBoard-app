@@ -14,7 +14,7 @@
               </h5>
               <button
                 type="button"
-                class="btn-close btn-close-white"
+                class="btn-close"
                 aria-label="Close"
                 @click="emit('close')"
               ></button>
@@ -60,7 +60,7 @@ const emit = defineEmits<{
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--kanban-modal-backdrop);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@ const emit = defineEmits<{
   border: 1px solid var(--kanban-border-strong);
   border-radius: 20px;
   color: var(--kanban-text);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--kanban-modal-shadow);
 }
 
 .kanban-modal .modal-title {

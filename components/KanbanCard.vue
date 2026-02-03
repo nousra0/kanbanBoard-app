@@ -114,7 +114,7 @@ function formatDate(iso: string) {
 
 .kanban-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35),
+  box-shadow: var(--kanban-card-shadow),
               0 0 0 1px var(--kanban-border-strong);
   background: var(--kanban-card-hover, var(--kanban-card));
 }
@@ -200,7 +200,7 @@ function formatDate(iso: string) {
   height: 28px;
   border: none;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--kanban-icon-btn-bg);
   color: var(--kanban-text-muted);
   display: flex;
   align-items: center;
@@ -210,7 +210,7 @@ function formatDate(iso: string) {
 }
 
 .kanban-card__btn:hover {
-  background: var(--kanban-accent-soft);
+  background: var(--kanban-icon-btn-hover);
   color: var(--kanban-accent);
 }
 

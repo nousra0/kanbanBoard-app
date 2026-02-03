@@ -253,17 +253,17 @@ function onConfirmDelete() {
 }
 
 .task-detail__btn--edit {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--kanban-icon-btn-bg);
   color: var(--kanban-text);
 }
 
 .task-detail__btn--edit:hover {
-  background: var(--kanban-accent-soft);
+  background: var(--kanban-icon-btn-hover);
   color: var(--kanban-accent);
 }
 
 .task-detail__btn--danger {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--kanban-icon-btn-bg);
   color: var(--kanban-text-muted);
 }
 

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { openAdd } = useAddTaskModal()
+const { isDark, toggleTheme } = useTheme()
+
 function openAddTask() {
   openAdd('todo')
 }
@@ -19,6 +21,16 @@ function openAddTask() {
           </div>
         </div>
         <div class="d-flex align-items-center gap-3">
+          <button
+            type="button"
+            class="kanban-header__theme-btn"
+            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+            @click="toggleTheme"
+          >
+            <i class="bi bi-sun-fill" :class="{ 'theme-icon--active': !isDark }"></i>
+            <i class="bi bi-moon-fill" :class="{ 'theme-icon--active': isDark }"></i>
+          </button>
           <button type="button" class="kanban-header__add-btn" @click="openAddTask">
             <i class="bi bi-plus-lg"></i>
             <span>Add task</span>
@@ -38,7 +50,7 @@ function openAddTask() {
 
 <style scoped>
 .kanban-header {
-  background: rgba(26, 10, 46, 0.88);
+  background: var(--kanban-header-bg);
   border-bottom: 1px solid var(--kanban-border-strong);
   backdrop-filter: blur(16px);
 }
@@ -77,6 +89,38 @@ function openAddTask() {
   color: var(--kanban-text-muted);
 }
 
+.kanban-header__theme-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--kanban-icon-btn-bg);
+  color: var(--kanban-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 0.2s, color 0.2s;
+}
+
+.kanban-header__theme-btn:hover {
+  background: var(--kanban-icon-btn-hover);
+  color: var(--kanban-accent);
+}
+
+.kanban-header__theme-btn .bi {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.kanban-header__theme-btn .theme-icon--active {
+  opacity: 1;
+  color: var(--kanban-accent);
+}
+
 .kanban-header__add-btn {
   display: inline-flex;
   align-items: center;
@@ -84,8 +128,8 @@ function openAddTask() {
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(145deg, #f97316 0%, #fb923c 50%, #eab308 100%);
-  color: #1a0a2e;
+  background: var(--kanban-add-btn-bg);
+  color: var(--kanban-add-btn-color);
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
